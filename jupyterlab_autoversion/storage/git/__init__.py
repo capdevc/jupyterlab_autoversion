@@ -41,7 +41,7 @@ def initialize(nb_server_app):
         (url_path_join(base_url, "autoversion/restore"), GitRestoreHandler, context),
     ]
    
-    post_save_autocommit_git_repo = partial(post_save_autocommit_git, repo)
-    post_save_autocommit_git_repo.__name__ = "post_save_autocommit_git_repo" 
+    def post_save_autocommit_git_hook(*args, **kwargs):
+        return post_save_autocommit_git(repo=repo, *args, **kwargs)
     
-    return post_save_autocommit_git_repo, handlers
+    return post_save_autocommit_git_hook, handlers
