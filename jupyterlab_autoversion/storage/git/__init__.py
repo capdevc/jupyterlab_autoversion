@@ -12,7 +12,10 @@ def initialize(nb_server_app):
     web_app = nb_server_app.web_app
     base_url = web_app.settings["base_url"]
 
+    print(base_url)
     repo_root = os.path.join(os.path.abspath(os.curdir), ".autoversion")
+    print(repo_root)
+
     if not os.path.exists(repo_root):
         os.mkdir(repo_root)
         repo = Repo.init(repo_root)

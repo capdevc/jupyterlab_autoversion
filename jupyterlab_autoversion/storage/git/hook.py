@@ -8,12 +8,15 @@ def post_save_autocommit_git(repo, model, *args, **kwargs):
     """convert notebooks to Python script after save with nbconvert
     replaces `jupyter notebook --script`
     """
+    print("hook1")
+
     if model["type"] != "notebook":
         return
+    print("hook2")
 
     if model.get("content") and model.get("path"):
         id = model["content"]["metadata"].get("autoversion", "")
-
+        print("hook3")
         if not id:
             sha = hashlib.sha256()
             sha.update(model["path"].encode())
