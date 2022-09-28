@@ -67,10 +67,7 @@ class TestExtension:
             def get_argument(name, default):
                 if name == "id":
                     return ""
-                if name == "path":
-                    return ""
-                else:
-                    return 0
+                return "" if name == "path" else 0
 
             h = GitRestoreHandler(app, m, repo=repo)
             h._transforms = []
@@ -80,10 +77,7 @@ class TestExtension:
             def get_argument(name, default):
                 if name == "id":
                     return ""
-                if name == "path":
-                    return "test"
-                else:
-                    return 0
+                return "test" if name == "path" else 0
 
             h = GitRestoreHandler(app, m, repo=repo)
             h._transforms = []
@@ -93,10 +87,7 @@ class TestExtension:
             def get_argument(name, default):
                 if name == "id":
                     return "test"
-                if name == "path":
-                    return "test"
-                else:
-                    return 0
+                return "test" if name == "path" else 0
 
             h = GitRestoreHandler(app, m, repo=repo)
             h._transforms = []
