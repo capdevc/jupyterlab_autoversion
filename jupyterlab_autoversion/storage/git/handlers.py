@@ -20,7 +20,7 @@ class GitGetHandler(IPythonHandler):
             self.finish({"id": "", "last": ""})
             return
 
-        if not id and path:
+        if not id:
             sha = hashlib.sha256()
             sha.update(path.encode())
             id = sha.hexdigest()
@@ -52,7 +52,7 @@ class GitRestoreHandler(IPythonHandler):
             self.finish({"id": "", "version": -1, "contents": {}})
             return
 
-        if not id and path:
+        if not id:
             sha = hashlib.sha256()
             sha.update(path.encode())
             id = sha.hexdigest()
@@ -72,10 +72,7 @@ class GitRestoreHandler(IPythonHandler):
         nb = os.path.join(path, "NOTEBOOK")
 
         if os.path.exists(path):
-            if os.path.exists(nb):
-                nb = nbformat.read(nb, 4)
-            else:
-                nb = {}
+            nb = nbformat.read(nb, 4) if os.path.exists(nb) else {}
         else:
             nb = {}
 

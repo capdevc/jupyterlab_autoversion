@@ -31,9 +31,9 @@ def load_jupyter_server_extension(nb_server_app):
     hook, handlers = initialize(nb_server_app)
 
     print(
-        "Installing jupyterlab_autoversion handler on path %s"
-        % url_path_join(base_url, "autoversion")
+        f'Installing jupyterlab_autoversion handler on path {url_path_join(base_url, "autoversion")}'
     )
+
 
     web_app.add_handlers(host_pattern, handlers)
 

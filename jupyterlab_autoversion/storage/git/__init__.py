@@ -22,10 +22,7 @@ def initialize(nb_server_app):
     ignore_root = os.path.join(os.path.abspath(os.curdir), ".gitignore")
     if os.path.exists(ignore_root):
         with open(ignore_root, "r+") as fp:
-            add = True
-            for line in fp:
-                if ".autoversion" in line:
-                    add = False
+            add = all(".autoversion" not in line for line in fp)
             if add:
                 fp.write("\n.autoversion\n")
     else:
